@@ -1,0 +1,56 @@
+
+public class Data {
+
+	public static void main(String[] args) {
+		int year = 2019;
+		int month = 1;
+		int day = 28;
+		int N = 31;
+		while(N > 0) {
+			int leaveMonthDay = monthDays(month, year) - day +1;
+			if(N >= leaveMonthDay) {
+//				month ++;
+				if(month < 12) {
+					month ++;
+				}
+				else {
+					year++;
+					month = 1;
+				}
+				day = 1;
+				N = N - leaveMonthDay;
+			}
+			else {
+				day = day + N;
+				N = 0;
+			}
+		}
+		System.out.print(year+"/"+month+"/"+day);
+	}
+	public static boolean isLeapYear(int year)    
+	{   
+	    return ((year % 4 == 0) && (year % 100 != 0) || year % 400 == 0);   
+	}
+	public static int monthDays(int month,int year) {
+		switch (month) {
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+			return 31;
+			
+		case 2:
+			if(isLeapYear(year)) {
+				return 29;
+			}
+			else {
+				return 28;
+			}
+		default:
+			return 30;
+		}
+		
+	}
+}
